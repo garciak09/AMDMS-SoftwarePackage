@@ -1,11 +1,16 @@
 import cv2
 import numpy as np
 
+# variable definitions
+# gray = grayscale version of image from camera
+# gray = grayscale image after a guassian filter is applied
+# edged = the edges in the image formatted as pixel locations in an array
+# contours = the pixel locations of contours defined from the edges
+# hierarchy = hierarchy chosen for the contours
+
 def contours(image):
 
-    # Let's load a simple image with 3 black squares
-    #image = cv2.imread(image1)
-    #image = image[250:1750,700:1800]
+    # section can be used to view the image the camera is taking
     # cv2.namedWindow('custom window', cv2.WINDOW_KEEPRATIO)
     # cv2.imshow('custom window', image)
     # cv2.resizeWindow('custom window', 200, 200)
@@ -21,21 +26,15 @@ def contours(image):
     # Find Canny edges
     edged = cv2.Canny(gray, 100, 300)
     # cv2.waitKey(0)
-
-    # remove small edges
-    # for e in edged:
-    #     if (edged[e]==255).sum() <100:
-    #         edged.pop(e)
     
     # Finding Contours
     # Use a copy of the image e.g. edged.copy()pip3 install imutils
     # since findContours alters the image
     contours, hierarchy = cv2.findContours(edged, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
     
+    # draw the edges of the image
     #cv2.imshow('Canny Edges After Contouring', edged)
     #cv2.waitKey(0)
-    
-    # print("Number of Contours found = " + str(len(contours)))
     
     # Draw all contours
     # -1 signifies drawing all contours

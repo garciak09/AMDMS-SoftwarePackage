@@ -12,6 +12,24 @@ def main2(mirrorType):
     from takeImage import takeImage
     import cv2
 
+    # variable definitions
+    # image1 = file path to image being analyzed
+    # mirrorType = mirror type being measured, sets region of interest
+    # contours = array of pixel locations corresponding to each contour in the image
+    # center = pixel location of the center of the image
+    # radii = array of radius values for each contour
+    # theta = array of angle values for each point in each contour
+    # radiiMode = array of a mode radius value for each contour
+    # h = array with the amount each radius value is different that the mode value for each contour
+    # area = numerical integration of each contour in the h array
+    # start = time value when the measurement is started
+    # img = array of image pixel values taken by camera
+    # image = pixel values from image1
+    # end = time at the end of the measurement
+    # total_time = time of measurement in seconds
+    # results = string that determines if the measurement passes or fails
+    # distortionLevel = this is the distortion level that is being used in the ratio.py file
+
     # start timer
     start = time.time()
 

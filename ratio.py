@@ -1,5 +1,12 @@
 # function that finds the ratio of the distortion
 
+# variable definitions
+# distortionLevel = distortion level that is deemed acceptable
+# xValue = the area under the curve of the mode radius distribution multiplied by the acceptable distortion level
+# ratio1 = divison between area under the "unideal" curve over the ideal curve
+# Q = array that holds each ratio value per contour
+# results = string that returns pass or fail if the ratio is greater or less than 1
+
 def ratio(mode, area1, h):
     Q = []
     # test commenet

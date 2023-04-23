@@ -1,4 +1,5 @@
 # the main file where all the functions will be called/run from
+# used for debugging purposes
 from contours import contours
 from radiusSampling import radiusSampling
 from modeRadius import modeRadius
@@ -9,6 +10,17 @@ from ratio import ratio
 from center import centerImage
 from takeImage import takeImage
 import cv2
+
+# variable definitions
+# image1 = file path to image being analyzed
+# mirrorType = mirror type being measured, sets region of interest
+# contours = array of pixel locations corresponding to each contour in the image
+# center = pixel location of the center of the image
+# radii = array of radius values for each contour
+# theta = array of angle values for each point in each contour
+# radiiMode = array of a mode radius value for each contour
+# h = array with the amount each radius value is different that the mode value for each contour
+# area = numerical integration of each contour in the h array
 
 # import image
 # image1 = "./IMG_0258.jpeg"
@@ -26,7 +38,6 @@ else:
 
 # find contours
 contours = contours(image1)
-# contours = circleContours(image1)
 
 # finding the radii of the contours
 # returns an array with each element being a list of the radii values per contour

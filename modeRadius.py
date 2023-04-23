@@ -2,6 +2,10 @@
 
 import statistics
 
+# variable definitions
+# mode = holder variable that calculates the mode per contour
+# mode2 = final variable where the individual mode values are appended to
+
 def modeRadius(radii):
     mode = []
     mode2 = []

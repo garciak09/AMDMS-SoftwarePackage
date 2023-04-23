@@ -4,13 +4,20 @@
 import math
 import numpy as np
 
+# variable definitions
+# radii = array of radius values for each pixel in each contour
+# theta = array of angle values for each pixel in each contour
+# radiiList = list of radius values for each pixel in a contour
+# thetaList = list of angle values for each pixel in a contour
+# test = list of all the pixel values in the contours
+# y = y value of a pixel location
+# x = x value of a pixel location
+
 # define function
 def radiusSampling(contours, center):
     # define array to hold radii values
     radii = [None] * len(contours)
     theta = [None] * len(contours)
-    # define center
-    #center = [0, 0]
     # loop through the contours
     j = 0
     for contour in contours:

@@ -6,6 +6,11 @@ import sys
 import os
 from main2 import main2
 
+# variable definitions
+# layout = this contains all the elements on the GUI
+# window = the window is the actual popup that holds all the elements
+# mirrorType = defined by a button click, gets stored in this variable and used in the main2 function
+
 
 def main():
     layout = [
@@ -27,19 +32,21 @@ def main():
 
     while True:
         event, values = window.read(timeout = 1)
+        # if the 'x' is selected the GUI will quit
         if event == "Exit" or event == sg.WIN_CLOSED:
             break
-        if event =="Submit":
-            mirrorType = values["-OUTPUT-"]
+        # if the smaller mirror or larger mirror buttons are clicked the mirror type gets sent to the variable mirrortype
         if event =="MirrorType1":
             mirrorType = "1"
         if event =="MirrorType2":
             mirrorType = "2"
+        # if the start button is pushed main2 is called and runs the entire distortion algorithm
         if event =="start":
             results, time, distortionLevel = main2(mirrorType)
+            # progress bar gets updated
             for i in range(100):
                 window["-PROG-"].UpdateBar(i+1)
-            print(results)
+            # results are output with corresponding colors
             if results == "Pass":
                 color = "#00FF00"
             else:
@@ -53,6 +60,7 @@ def main():
             window['-TIMERESULTS-'].update(time)
             window['-TIMERESULTS-'].update(background_color = color2)
             window['-DISTORTION-'].update(distortionLevel*100)
+        # GUI will stop if this button is pushed
         if event =="EStop":
             break
         
