@@ -1,0 +1,17 @@
+fpdf==1.7.2
+matplotlib==3.6.3
+numpy==1.24.1
+office365==0.3.15
+Office365_REST_Python_Client==2.5.4
+opencv_python==4.8.0.76
+opencv_python_headless==4.8.1.78
+pandas==1.5.3
+pdfkit==1.0.0
+Pillow==10.0.1
+Pillow==10.2.0
+pypylon==1.9.0
+PySimpleGUI==4.60.5
+PySimpleGUI==5.0.3
+rembg==2.0.52
+scipy==1.12.0
+ydata_profiling==0.0.dev0
