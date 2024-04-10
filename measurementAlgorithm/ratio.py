@@ -16,9 +16,10 @@ def ratio(mode, area1, h, pixelCoordinates):
     for m in range(len(area1)):
         xValue = distortionLevel * mode[m] * len(h[m])
         ratio1 = abs(area1[m] / xValue)
-        print(m)
         if ratio1 > 1:
-            distortedCoordinates.append(pixelCoordinates[m])
+            pixelCoordinates[m] = [tuple(pair) for pair in pixelCoordinates[m]]
+            distortedCoordinates += (pixelCoordinates[m])
+            print(pixelCoordinates[m])
         Q.append(ratio1)
 
         # print pass or fail

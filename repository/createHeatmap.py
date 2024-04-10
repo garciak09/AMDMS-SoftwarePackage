@@ -9,12 +9,13 @@ def extractCoordinates(query):
     coordinates = []
     for result in query:
         for pair in literal_eval(result[1]):
+            # if type(pair) is list:
+            #     print(pair)
             coordinates.append(pair)
     pixel_coordinates = coordinates #+ list(product(range(0, 5000, 50), range(0, 5000, 50)))
     # frequency = np.array([len(list(group)) - 1 for key, group in groupby(sorted(pixel_coordinates))])
-    return np.array(list(set(pixel_coordinates)))
+    return np.array(pixel_coordinates)
 
-# Example data with repeated pixel coordinates and associated values (frequencies)
 def createHeatmap(query):
     pixels = extractCoordinates(query)
     # Creating the matplotlib heatmap

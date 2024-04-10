@@ -3,16 +3,17 @@ import datetime
 import math
 import random
 import uuid
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 import PySimpleGUI as sg
 from PySimpleGUI import theme
-
 from repository.createHeatmap import createHeatmap
 from repository.mirrorAPI import *
 from measurementAlgorithm.main2 import main2
 from repository.createPDF import *
 import re
+
+from repository.sendEmail import sendEmail
 
 
 # TODO: Add what part number was just run for 'Most Recent Run'
@@ -375,7 +376,7 @@ def updateGUI(partNum, result, runtime, distortionLevel, window):
     window[f"-{partNum}-AVG-RESULTS-"].update(str(round(avgPassRate * 100, 2)) + "%")
     window[f"-{partNum}-AVG-PASSED-"].update(round(totalMirrors * avgPassRate))
     window[f"-{partNum}-AVG-FAILED-"].update(round(totalMirrors * (1 - avgPassRate)))
-    window[f"-{partNum}-AVG-DISTORTION-"].update(str(avgDistortion * 100) + "%")
+    window[f"-{partNum}-AVG-DISTORTION-"].update(str(round(avgDistortion * 100, 2)) + "%")
 
     #### Most Recent Measurement Section ####
     window['-PART-NUM-'].update(partNum)
@@ -434,7 +435,7 @@ def transferValues(oldWindow, newWindow):
 def main():
     layout = windowLayout("black")
     window = sg.Window("Mirror Distortion Measurement", layout, size=(1000, 1000))
-    window.BackgroundColor = "black" # change to 'white' or 'black' for theme change
+    window.BackgroundColor = "black"  # change to 'white' or 'black' for theme change
     while True:
         event, values = window.read()
 

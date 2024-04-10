@@ -19,7 +19,7 @@ def roundup(x):
     return int(math.ceil(x / 10.0)) * 10
 
 partNumbers = ["221-9264 / 153-4010", "5P-6879", "8T-2287"]
-# deleteAllData()
+deleteAllData()
 for i in range(10000):
     result = random.choice(["Pass", "Fail"])
     data = {"id": uuid.uuid4(),
