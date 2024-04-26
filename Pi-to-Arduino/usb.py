@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Control an Arduino over the USB port."""
 
-# Referenced Website : https://www.woolseyworkshop.com/2020/02/05/controlling-an-arduino-from-a-raspberry-pi/
+# Referenced Website :
 
 # usb.py
 # Created by John Woolsey on 12/17/2019.
@@ -9,24 +9,13 @@
 
 
 # USB_PORT = "/dev/ttyUSB0"  # Arduino Uno R3 Compatible
-USB_PORT = "/dev/tty.usbmodem1301"  # Arduino Uno WiFi Rev2
+USB_PORT = "/dev/tty.usbmodem1201"  # Arduino Uno WiFi Rev2
 
 ## Run this file with ./usb.py
 ## From there you can enter commands to receive input from the arduino
 
 # Imports
 import serial
-
-
-# Functions
-def print_commands():
-    """Prints available commands."""
-    print("Available commands:")
-    print("  a - Retrieve Arduino value")
-    print("  l - Turn on Arduino LED")
-    print("  k - Turn off Arduino LED")
-    print("  x - Exit program")
-
 
 # Main
 
@@ -43,7 +32,7 @@ except:
 # print_commands()
 
 file = open("arduinoOutput.txt", "w")
-
+usb.write(b'GO')
 while True:
     # command = input("Enter command: ")
     line = usb.readline()  # read input from Arduino

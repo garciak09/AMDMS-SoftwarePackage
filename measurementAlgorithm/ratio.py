@@ -34,4 +34,4 @@ def ratio(mode, area1, h, pixelCoordinates):
 
     print(results)
 
-    return results, distortionLevel, distortedCoordinates
+    return results, round((sum(Q) / len(Q)), 2), distortedCoordinates

@@ -300,9 +300,9 @@ def windowLayout(backgroundColor):
         [sg.Text("Last Run:", text_color="yellow", size=(20, 2), font=('Arial', 20), justification="right"),
          sg.Text("", key="LastRun", size=(20, 2), font=('Arial', 20), text_color="yellow")
          ],
-        [sg.Text("Last Calibration:", text_color="yellow", size=(20, 2), font=('Arial', 20), justification="right"),
-         sg.Text("", key="LastCalibration", size=(20, 2), font=('Arial', 20), text_color="yellow")
-         ],
+        # [sg.Text("Last Calibration:", text_color="yellow", size=(20, 2), font=('Arial', 20), justification="right"),
+        #  sg.Text("", key="LastCalibration", size=(20, 2), font=('Arial', 20), text_color="yellow")
+        #  ],
 
         [
             sg.pin(
@@ -310,7 +310,7 @@ def windowLayout(backgroundColor):
                           font=('Arial Bold', 20), button_color="black on yellow")
             ),
             sg.pin(
-                sg.Button("Calibrate Camera", key="Calibrate Camera", size=(20, 2), visible=True,
+                sg.Button("Center Mirror", key="-CENTER-MIRROR-", size=(20, 2), visible=True,
                           font=('Arial Bold', 20), button_color="black on yellow")
             ),
             sg.Button(f"Change Theme", key="-CHANGE-THEME-", size=(5,2), visible=True, button_color=themeButton,
@@ -425,7 +425,8 @@ def transferValues(oldWindow, newWindow):
                      "-RESULTS-",
                      "-DISTORTION-",
                      "LastRun",
-                     "LastCalibration"]
+                     # "LastCalibration"
+                     ]
     for key in valueToUpdate:
         newWindow[key].update(oldWindow[key].get())
         if key == "-RESULTS-":  # Used because the background color of the results text box is different from the rest
@@ -450,15 +451,18 @@ def main():
             window.close()
             window = newWin
 
-        if event == "Calibrate Camera":
+        if event == "-CENTER-MIRROR-":
             # TODO: Add Calibration Function
-            window['LastCalibration'].update(datetime.now().strftime("%b-%d %I:%M %p"))
+            continue
+            # window['LastCalibration'].update(datetime.now().strftime("%b-%d %I:%M %p"))
 
         # if the start button is pushed main2 is called and runs the entire distortion algorithm
         if event == "start":
-            result, runtime, distortionLevel, distortedCoordinates = main2(random.choice(["1", "2"]))
+            window['start'].update("Measurement in Progress", button_color="yellow on black", enable_events=False)
+            result, runtime, distortionLevel, distortedCoordinates = main2("2")
             timeOfRun = datetime.now()
-            partNum = random.choice(["221-9264 / 153-4010", "5P-6879", "8T-2287"])
+            # partNum = random.choice(["221-9264 / 153-4010", "5P-6879", "8T-2287"])
+            partNum = "8T-2287"
             data = {"id": uuid.uuid4(),
                     "coordinates": distortedCoordinates,
                     "mirrorPartNum": partNum,
