@@ -19,21 +19,46 @@ def roundup(x):
     return int(math.ceil(x / 10.0)) * 10
 
 partNumbers = ["221-9264 / 153-4010", "5P-6879", "8T-2287"]
-deleteAllData()
-for i in range(10000):
-    result = random.choice(["Pass", "Fail"])
-    data = {"id": uuid.uuid4(),
-            "coordinates": f"[({roundup(random.randint(4500, 5000))}, {roundup(random.randint(4500, 5000))}), "
-                           f" ({roundup(random.randint(2000, 2500))}, {roundup(random.randint(2000, 2500))})]",
-            "mirrorPartNum": partNumbers[random.randint(0, 2)],
-            "runDate": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "distortionLevel": round(random.uniform(0, 1), 5),
-            "result": result,
-            "runTime": round(random.uniform(0, 1), 3)
-            }
-
-    POST(data)
 # deleteAllData()
+# for i in range(10000):
+#     result = random.choice(["Pass", "Fail"])
+#     data = {"id": uuid.uuid4(),
+#             "coordinates": f"[({roundup(random.randint(4500, 5000))}, {roundup(random.randint(4500, 5000))}), "
+#                            f" ({roundup(random.randint(2000, 2500))}, {roundup(random.randint(2000, 2500))})]",
+#             "mirrorPartNum": partNumbers[random.randint(0, 2)],
+#             "runDate": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+#             "distortionLevel": round(random.uniform(0, 1), 5),
+#             "result": result,
+#             "runTime": round(random.uniform(0, 1), 3)
+#             }
+#
+#     POST(data)
+# deleteAllData()
+
+# c.execute('''
+#
+#             SELECT coordinates FROM mirrorData
+#             WHERE id = "ae003071-75b8-4b30-a8b7-9fddfefa7232"
+#
+#           ''')
+
+# coordinates = c.fetchall()
+# conn.close()
+# coord = [i[::-1] for i in eval(coordinates[0][0])]
+# for i in range(len(coord)):
+#     coord[i] = (4000 - coord[i][0], 4000 - coord[i][1])
+#
+# print(coord)
+# data = {"id": uuid.uuid4(),
+#         "coordinates": coord,
+#         "mirrorPartNum": partNumbers[2],
+#         "runDate": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+#         "distortionLevel": round(random.uniform(0, 1), 5),
+#         "result": "Fail",
+#         "runTime": round(random.uniform(0, 1), 3)
+#         }
+# for i in range(2):
+#     POST(data)
 
 # partNum = partNumbers[random.randint(0, 2)]
 # print("querying for part number: " + partNum)
