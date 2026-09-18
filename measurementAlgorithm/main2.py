@@ -9,7 +9,6 @@ def main2(mirrorType):
     from measurementAlgorithm.center import centerImage
     import time
     import cv2
-    from removeBackground import removeBG
 
     # variable definitions
     # image1 = file path to image being analyzed
@@ -35,18 +34,17 @@ def main2(mirrorType):
     # import image
     # image1 = "IMG_0258.jpeg"
     # img = takeImage()
-    image1 = "medium mirror_distorted_focused.png"
-    # image1 = removeBG(imagePath)
+    image1 = "pictures/image1.tiff"  #"/home/cjsexton1/SeniorDesignCode/AMDMS-SoftwarePackage/image1.tiff"
 
     image = cv2.imread(image1)
-    # select ROI based on mirror size
 
+    # select ROI based on mirror size
+    # TODO: was unable to incorporate proper cropping to only have the mirror in picture
+    # TODO: needs to be updated
     if mirrorType == "1":
         image1 = image[250:1700, 60:2340]
     else:
-        # image1 = image[200:2000, 100:2300]
-        image1 = image[300:1850, 225:2200]
-
+        image1 = image[400:1500, 360:2000]
 
     # find contours
     contours = contours(image1)
@@ -80,4 +78,4 @@ def main2(mirrorType):
     end = time.time()
     total_time = end - start
 
-    return results, round(total_time, 3), distortionLevel, distortedCoordinates
+    return results, round(total_time, 3), distortionLevel, []#distortedCoordinates

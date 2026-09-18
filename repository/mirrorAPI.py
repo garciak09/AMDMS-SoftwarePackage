@@ -8,7 +8,7 @@ def connect():
     @rtype: Cursor, Connection
     @return: the connection and cursor to the database
     """
-    conn = sqlite3.connect("/Users/kevingarcia/Desktop/algorithmfiles/repository/mirrorData.db")
+    conn = sqlite3.connect("repository/mirrorData.db")  # "/home/cjsexton1/SeniorDesignCode/AMDMS-SoftwarePackage/mirrorData.db")
     cur = conn.cursor()
     return cur, conn
 
@@ -91,3 +91,16 @@ def GETALL():
     queryResults = cur.fetchall()
     cur.close()
     return queryResults
+
+
+def getPartNumber(longerSide, shorterSide):
+    cur, conn = connect()
+    cur.execute(
+        f'''
+            SELECT partNum FROM mirrorSpecs
+            ORDER BY ABS(xLength - {shorterSide})
+        '''
+    )
+    partNumber = cur.fetchall()
+    cur.close()
+    return partNumber
